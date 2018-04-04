@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh './var/jenkins_home/workspace/JEE7-Demo/docker-config/database/runDatabase.sh'
+                sh '-c ./var/jenkins_home/workspace/JEE7-Demo/docker-config/database/runDatabase.sh'
                 sh 'mvn test'
             }
             post {
