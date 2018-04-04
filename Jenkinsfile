@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                where eb
+                sh 'echo $PATH'
                 sh 'mvn test'
             }
             post {
