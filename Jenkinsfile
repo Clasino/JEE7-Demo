@@ -15,6 +15,7 @@ pipeline {
         stage('Database') {
             agent {
                 docker {
+                    image any
                     args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
