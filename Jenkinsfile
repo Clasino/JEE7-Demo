@@ -20,7 +20,8 @@ pipeline {
                 }
             }
             steps {
-                sh './docker-config/database/runDatabase.sh'
+                sh 'echo "lol"'
+                sh 'sh /var/jenkins_home/workspace/JEE7-Demo/docker-config/database/runDatabase.sh'
             }
         }
         stage('Test') {
