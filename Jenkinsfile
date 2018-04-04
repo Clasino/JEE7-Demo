@@ -19,7 +19,6 @@ pipeline {
                 }
             }
             steps {
-                sh 'which docker'
                 sh './docker-config/database/runDatabase.sh'
             }
         }
