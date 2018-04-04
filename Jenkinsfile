@@ -1,35 +1,19 @@
 pipeline {
-    agent none
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'maven:3-alpine'
-                    args '-v /root/.m2:/root/.m2'
-                }
-            }
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Database') {
-            agent {
-                dockerfile {
-                    dir './docker-config/database'
-                }
-            }
+        stage('Test') {
             steps {
                 sh './docker-config/database/runDatabase.sh'
-            }
-        }
-        stage('Test') {
-            agent {
-                docker {
-                    image 'maven:3-alpine'
-                    args '-v /root/.m2:/root/.m2'
-                }
-            }
-            steps {
                 sh 'mvn test'
             }
             post {
