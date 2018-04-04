@@ -19,7 +19,6 @@ pipeline {
                 }
             }
             steps {
-                docker ps
                 sh './docker-config/database/runDatabase.sh'
             }
         }
