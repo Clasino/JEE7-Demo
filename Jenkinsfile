@@ -13,7 +13,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh './docker-config/database/runDatabase.sh'
+                sh 'pwd'
+                sh 'ls'
                 sh 'mvn test'
             }
             post {
