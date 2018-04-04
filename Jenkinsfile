@@ -19,7 +19,6 @@ pipeline {
                 }
             }
             steps {
-                sh 'apt install docker'
                 sh './docker-config/database/runDatabase.sh'
             }
         }
