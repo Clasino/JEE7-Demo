@@ -1,12 +1,12 @@
 #!/bin/bash
 
-docker network inspect jee7-network 1>/dev/null 2>/dev/null
+docker network inspect -v /var/run/docker.sock:/var/run/docker.sock jee7-network 1>/dev/null 2>/dev/null
 if [ $? -ne 0 ]; then
-	docker network create --subnet 172.18.0.0/16   jee7-network
+	docker network create --subnet 172.18.0.0/16 -v /var/run/docker.sock:/var/run/docker.sock jee7-network
 fi
 
 
 if [[ "$(docker images -q jee7-demo-mysql 2> /dev/null)" == "" ]]; then
- 	docker build -t jee7-demo-mysql .
+ 	docker build -t jee7-demo-mysql -v /var/run/docker.sock:/var/run/docker.sock .
 fi
-docker run --ip="172.18.0.3" --net="jee7-network" -p 13306:3306 -e MYSQL_ROOT_PASSWORD=admin -d jee7-demo-mysql
+docker run --ip="172.18.0.3" --net="jee7-network" -p 13306:3306 -e MYSQL_ROOT_PASSWORD=admin -v /var/run/docker.sock:/var/run/docker.sock -d jee7-demo-mysql
