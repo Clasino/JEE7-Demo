@@ -19,9 +19,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker ps'
-                sh 'apt install docker'
-                sh './docker-config/database/runDatabase.sh'
+                sh 'whoami'
             }
         }
         stage('Test') {
