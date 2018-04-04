@@ -14,7 +14,9 @@ pipeline {
         }
         stage('Database') {
             agent {
-                dockerfile true
+                dockerfile {
+                    dir './docker-config/database'
+                }
             }
             steps {
                 sh './docker-config/database/runDatabase.sh'
