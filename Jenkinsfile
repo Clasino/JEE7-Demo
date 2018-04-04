@@ -19,6 +19,7 @@ pipeline {
                 }
             }
             steps {
+                sh 'whoami'
                 sh './docker-config/database/runDatabase.sh'
             }
         }
