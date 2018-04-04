@@ -20,7 +20,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'echo "lol"'
+                sh 'pwd'
                 sh 'sh /var/jenkins_home/workspace/JEE7-Demo/docker-config/database/runDatabase.sh'
             }
         }
