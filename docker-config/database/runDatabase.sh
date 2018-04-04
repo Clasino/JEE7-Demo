@@ -7,6 +7,6 @@ fi
 
 
 if [[ "$(docker images -q jee7-demo-mysql 2> /dev/null)" == "" ]]; then
- 	docker build -t jee7-demo-mysql ./docker-config/database/
+ 	docker build -t jee7-demo-mysql .
 fi
 docker run --ip="172.18.0.3" --net="jee7-network" -p 13306:3306 -e MYSQL_ROOT_PASSWORD=admin -d jee7-demo-mysql
