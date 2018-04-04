@@ -13,11 +13,8 @@ pipeline {
             }
         }
         stage('Database') {
-            agent {
-                docker {
-                    image 'jenkins'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock'
-                }
+            agent any {
+                args '-v /var/run/docker.sock:/var/run/docker.sock'
             }
             steps {
                 sh '/var/jenkins_home/workspace/JEE7-Demo/docker-config/database/runDatabase.sh'
