@@ -12,7 +12,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Database') {
+        stage('Containers') {
             agent {
                 docker {
                     image 'docker'
@@ -20,7 +20,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'pwd'
+                sh 'sh /var/jenkins_home/workspace/JEE7-Demo/docker-config/appserver_integration_tests/runAppServer.sh'
                 sh 'sh /var/jenkins_home/workspace/JEE7-Demo/docker-config/database/runDatabase.sh'
             }
         }
