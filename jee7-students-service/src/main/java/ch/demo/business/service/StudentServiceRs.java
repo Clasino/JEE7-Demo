@@ -13,6 +13,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.core.Response;
 
 import ch.demo.dom.Student;
@@ -54,6 +55,7 @@ public class StudentServiceRs {
 	@PUT
 	@Path("/add")
 	@Produces({ "application/json" })
+	@Consumes({ "application/json" })
 	public Response add(@NotNull Student student) throws URISyntaxException {
 		service.add(student);
 		return Response.status(201).contentLocation(new URI("students/byStudentId/" + student.getStudentId())).build();
@@ -62,6 +64,7 @@ public class StudentServiceRs {
 	@POST
 	@Path("/update/{studentId}")
 	@Produces({ "application/json" })
+	@Consumes({ "application/json" })
 	public Response update(@NotNull @Digits(integer = 7, fraction = 0) @PathParam("studentId") String studentId,
 			@NotNull Student student) throws URISyntaxException {
 		try {
@@ -70,7 +73,7 @@ public class StudentServiceRs {
 			//To solve that problem I defined NoResultException as an ApplicationException in the ejb-jar.xml
 		} catch (NoResultException e) {
 			return Response.status(Response.Status.NOT_FOUND).build();
-		}		
+		}
 		return Response.status(200).contentLocation(new URI("students/byStudentId/" + student.getStudentId())).build();
 	}
 

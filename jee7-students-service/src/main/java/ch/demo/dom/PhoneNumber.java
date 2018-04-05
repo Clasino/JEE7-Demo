@@ -8,9 +8,9 @@ import javax.validation.constraints.Size;
 
 /**
  * Represents a phone number.
- * 
+ *
  * @author hostettler
- * 
+ *
  */
 public class PhoneNumber implements Serializable {
 
@@ -25,7 +25,7 @@ public class PhoneNumber implements Serializable {
 
 	/**
 	 * The constructor.
-	 * 
+	 *
 	 * @param countryCode
 	 *            Phone country code. For instance 41 for Switzerland.
 	 * @param areaCode
@@ -45,6 +45,8 @@ public class PhoneNumber implements Serializable {
 		this.setCountryCode(pn.getCountryCode());
 		this.setNumber(pn.getNumber());
 	}
+
+	public PhoneNumber(){}
 
 	/**
 	 * @return the countryCode
