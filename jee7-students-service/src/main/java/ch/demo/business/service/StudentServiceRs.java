@@ -52,7 +52,7 @@ public class StudentServiceRs {
 		return Response.ok().entity(s).build();
 	}
 
-	@PUT
+	@POST
 	@Path("/add")
 	@Produces({ "application/json" })
 	@Consumes({ "application/json" })
@@ -61,7 +61,7 @@ public class StudentServiceRs {
 		return Response.status(201).contentLocation(new URI("students/byStudentId/" + student.getStudentId())).build();
 	}
 
-	@POST
+	@PUT
 	@Path("/update/{studentId}")
 	@Produces({ "application/json" })
 	@Consumes({ "application/json" })
