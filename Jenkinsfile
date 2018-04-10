@@ -16,6 +16,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker'
+                    args '-p 9990:9990'
                 }
             }
             steps {
