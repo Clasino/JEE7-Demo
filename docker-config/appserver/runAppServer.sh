@@ -8,7 +8,7 @@ if [ $? -ne 0 ]; then
 fi
 
 if [[ "$(docker images -q jee7-demo-wildfly 2> /dev/null)" == "" ]]; then
- 	docker build -t jee7-demo-wildfly .
+ 	docker build -t jee7-demo-wildfly ./docker-config/appserver/Dockerfile
 fi
 if docker inspect -f {{.State.Running}} $CONTAINER_NAME; then
     docker rm -fv $CONTAINER_NAME
