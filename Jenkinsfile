@@ -19,8 +19,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'sh /var/jenkins_home/workspace/JEE7-Demo/docker-config/database/runDatabase.sh'
-                sh 'sh /var/jenkins_home/workspace/JEE7-Demo/docker-config/appserver_integration_tests/runAppServer.sh'
+                sh 'sh jenkins/scripts/database/runDatabase.sh'
+                sh 'sh jenkins/scripts/appserver_integration_tests/runAppServer.sh'
             }
         }
         stage('Test') {
@@ -46,10 +46,12 @@ pipeline {
             agent {
                 docker {
                     image 'docker'
+                    args '-v /:/tmp/server'
                 }
             }
             steps {
-                sh 'sh /var/jenkins_home/workspace/JEE7-Demo/docker-config/appserver/runAppServer.sh' 
+                sh 'sh jenkins/scripts/appserver/runAppServer.sh'
+                sh 'sh jenkins/scripts/deploy.sh'
             }
         }
     }
