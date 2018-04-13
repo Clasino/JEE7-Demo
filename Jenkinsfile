@@ -35,7 +35,10 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    junit 'jee7-class-service/target/surefire-reports/*.xml'
+                    junit 'jee7-grade-service/target/surefire-reports/*.xml'
+                    junit 'jee7-search-service/target/surefire-reports/*.xml'
+                    junit 'jee7-students-service/target/surefire-reports/*.xml'
                 }
             }
         }
