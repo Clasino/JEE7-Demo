@@ -42,5 +42,15 @@ pipeline {
                 }
             }
         }
+        stage('Deliver') {
+            agent {
+                docker {
+                    image 'docker'
+                }
+            }
+            steps {
+                sh 'sh /var/jenkins_home/workspace/JEE7-Demo/docker-config/appserver/runAppServer.sh' 
+            }
+        }
     }
 }
